@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Lambdatest Ecommerce Test Suite" parallel="methods" thread-count="5">
+
+    <test name="HomePage Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.HomePageTest" />
+        </classes>
+    </test>
+    <test name="Product Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.ProductPageTest" />
+        </classes>
+    </test>
+    <test name="Search Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.SearchPageTest" />
+        </classes>
+    </test>
+    <test name="Cart Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.CartPageTest" />
+        </classes>
+    </test>
+    <test name="Checkout Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.CheckoutPageTest" />
+        </classes>
+    </test>
+    <test name="Wishlist Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.WishlistPageTest" />
+        </classes>
+    </test>
+    <test name="Login Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.LoginPageTest" />
+        </classes>
+    </test>
+    <test name="Register Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.RegisterPageTest" />
+        </classes>
+    </test>
+    <test name="Navigation Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.NavigationPageTest" />
+        </classes>
+    </test>
+</suite>
