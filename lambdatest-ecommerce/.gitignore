@@ -9,4 +9,3 @@ playwright-report/
 allure-results/
 *.log
 .DS_Store
-.vscode/

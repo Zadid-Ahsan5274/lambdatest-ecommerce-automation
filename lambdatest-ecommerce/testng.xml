@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Lambdatest Ecommerce Test Suite" parallel="methods" thread-count="5">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="LambdaTest eCommerce Playground Suite" verbose="1" parallel="classes" thread-count="3">
 
-    <test name="HomePage Tests">
+    <test name="Homepage Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.HomePageTest" />
+            <class name="com.lambdatest.ecommerce.tests.HomeTest"/>
         </classes>
     </test>
-    <test name="Product Tests">
-        <classes>
-            <class name="com.lambdatest.ecommerce.tests.ProductPageTest" />
-        </classes>
-    </test>
+
     <test name="Search Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.SearchPageTest" />
+            <class name="com.lambdatest.ecommerce.tests.SearchTest"/>
         </classes>
     </test>
+
+    <test name="Product Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.ProductTest"/>
+        </classes>
+    </test>
+
     <test name="Cart Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.CartPageTest" />
+            <class name="com.lambdatest.ecommerce.tests.CartTest"/>
         </classes>
     </test>
-    <test name="Checkout Tests">
-        <classes>
-            <class name="com.lambdatest.ecommerce.tests.CheckoutPageTest" />
-        </classes>
-    </test>
+
     <test name="Wishlist Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.WishlistPageTest" />
+            <class name="com.lambdatest.ecommerce.tests.WishlistTest"/>
         </classes>
     </test>
-    <test name="Login Tests">
-        <classes>
-            <class name="com.lambdatest.ecommerce.tests.LoginPageTest" />
-        </classes>
-    </test>
+
     <test name="Register Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.RegisterPageTest" />
+            <class name="com.lambdatest.ecommerce.tests.RegisterTest"/>
         </classes>
     </test>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Checkout Tests">
+        <classes>
+            <class name="com.lambdatest.ecommerce.tests.CheckoutTest"/>
+        </classes>
+    </test>
+
     <test name="Navigation Tests">
         <classes>
-            <class name="com.lambdatest.ecommerce.tests.NavigationPageTest" />
+            <class name="com.lambdatest.ecommerce.tests.NavigationTest"/>
         </classes>
     </test>
+
 </suite>

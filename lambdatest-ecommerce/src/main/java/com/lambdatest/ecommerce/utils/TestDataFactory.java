@@ -1,15 +1,16 @@
 package com.lambdatest.ecommerce.utils;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Lightweight test-data factory. Avoids an external Faker dependency so the
  * framework has a minimal footprint, while still producing unique data per
  * test run (important for registration flows that require unique emails).
  */
-
-public class TestDataFactory {
+public final class TestDataFactory {
 
     private static final SecureRandom RANDOM = new SecureRandom();
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
@@ -49,21 +50,24 @@ public class TestDataFactory {
      * uppercase letter, one lowercase letter, one digit, and one special
      * character, with a minimum total length of 8.
      */
-
     public static String randomPassword(int length) {
         int targetLength = Math.max(length, 8);
-        List<Character> password = new ArrayList<>();
-        password.add(UPPER.charAt(RANDOM.nextInt(UPPER.length())));
-        password.add(LOWER.charAt(RANDOM.nextInt(LOWER.length())));
-        password.add(DIGITS.charAt(RANDOM.nextInt(DIGITS.length())));
-        password.add(SPECIAL_CHARS.charAt(RANDOM.nextInt(SPECIAL_CHARS.length())));
+
+        List<Character> passwordChars = new ArrayList<>();
+        passwordChars.add(UPPER.charAt(RANDOM.nextInt(UPPER.length())));
+        passwordChars.add(LOWER.charAt(RANDOM.nextInt(LOWER.length())));
+        passwordChars.add(DIGITS.charAt(RANDOM.nextInt(DIGITS.length())));
+        passwordChars.add(SPECIAL_CHARS.charAt(RANDOM.nextInt(SPECIAL_CHARS.length())));
+
         String allChars = UPPER + LOWER + DIGITS + SPECIAL_CHARS;
-        for (int i = password.size(); i < targetLength; i++) {
-            password.add(allChars.charAt(RANDOM.nextInt(allChars.length())));
+        for (int i = passwordChars.size(); i < targetLength; i++) {
+            passwordChars.add(allChars.charAt(RANDOM.nextInt(allChars.length())));
         }
-        Collections.shuffle(password);
-        StringBuilder sb = new StringBuilder(length);
-        for (char c : password) {
+
+        Collections.shuffle(passwordChars, RANDOM);
+
+        StringBuilder sb = new StringBuilder(targetLength);
+        for (char c : passwordChars) {
             sb.append(c);
         }
         return sb.toString();
@@ -77,36 +81,36 @@ public class TestDataFactory {
         return "01" + randomDigits(9);
     }
 
-    public static String randomEmain() {
-        return "not-an-email" + randomString(4);
+    public static String invalidEmail() {
+        return "not-an-email-" + randomString(4);
     }
 
-    // Immutable bundle of data for the registration form. 
-
+    /** Immutable bundle of data for the registration form. */
     public record RegistrationData(
-        String firstName,
-        String lastName,
-        String email,
-        String telephone, 
-        String password
-    ){}
+            String firstName,
+            String lastName,
+            String email,
+            String telephone,
+            String password
+    ) {
+    }
 
-    public static RegistrationData generateRegistrationData(){
+    public static RegistrationData newRegistration() {
         String first = randomString(6);
-        String last = randomString(6);
+        String last = randomString(8);
         return new RegistrationData(
-            capitalize(first),
-            capitalize(last),
-            uniqueEmail(),
-            randomPhone(),
-            randomPassword()
+                capitalize(first),
+                capitalize(last),
+                uniqueEmail(),
+                randomPhone(),
+                randomPassword()
         );
     }
 
-    private static String capitalize(String str){
-        if(str.isEmpty()){
-            return str;
+    private static String capitalize(String value) {
+        if (value.isEmpty()) {
+            return value;
         }
-        return Character.toUpperCase(str.charAt(0))+str.substring(1);
+        return Character.toUpperCase(value.charAt(0)) + value.substring(1);
     }
 }

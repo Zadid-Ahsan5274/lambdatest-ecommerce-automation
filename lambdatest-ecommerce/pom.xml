@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lambdatest.ecommerce</groupId>
-    <artifactId>lambdatest-ecommerce</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.lambdatest</groupId>
+    <artifactId>lambdatest-ecommerce-playwright-java</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>LambdaTest eCommerce Playground - Playwright Java Automation Framework</name>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <playwright.version>1.48.0</playwright.version>
+        <testng.version>7.10.2</testng.version>
+        <slf4j.version>2.0.16</slf4j.version>
+
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.5.1</maven.surefire.plugin.version>
     </properties>
 
     <dependencies>
+        <!-- Playwright Java -->
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.62.0</version>
-            <scope>compile</scope>
+            <version>${playwright.version}</version>
         </dependency>
+
+        <!-- TestNG test runner -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.12.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Simple logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.19</version>
-            <scope>compile</scope>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>lambdatest-ecommerce-automation</finalName>
+        <finalName>lambdatest-ecommerce-playwright-java</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,16 +76,13 @@
                 </configuration>
             </plugin>
 
+            <!-- Enables running Playwright's browser-install CLI via Maven, e.g.:
+                 mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install with deps" -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.4.1</version>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
-
-    
-        
